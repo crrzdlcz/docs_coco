@@ -5,7 +5,8 @@
 // Colores.
 #let colorMeatloaf = rgb(104, 46, 13)
 #let colorGriz = rgb(190, 184, 175)
-#let baseRect = rgb(205, 214, 244)
+#let baseRect = rgb(221, 174, 126)
+#let colorVerde= rgb(127, 182, 133)
 
 // Formato de texto.
 #show strong: set text(
@@ -13,25 +14,24 @@
 )
 
 #show raw: set text(
-  font: "Suse Mono",
-  weight: "bold"
+  font: "Adwaita Mono",
+  weight: "regular"
 )
 
 // Formato de los rectangulos:
 #set rect(
-  radius: 3pt,
-  fill: baseRect,
+  radius: 1pt,
+  stroke: 0.4pt,
   width: 100%
 )
 
 // Formato de tablas.
 #set table(
   align: center,
-  fill: (_,y) => if calc.odd(y){colorGriz},
+  fill: (_,y) => if calc.odd(y){colorVerde},
   stroke: none,
   gutter: 2pt,
 )
-
 
 
 #align(center)[
@@ -55,19 +55,27 @@ Por:
 Sin embargo, *Coco* está especialmente diseñado para el aprendizaje, por lo que carece de características avanzadas,
 tales como manejo de memoria, enumeraciones, diccionarios o apuntadores. #parbreak()
 
-La implementación de *Coco* esta escrita en Java, utilizando la libreria JavaCC;
-Por lo que para ejecutarlo necesitaremos de el JDK y el JRE de Java(25).
+
+*Coco* se empaqueto como un #text(fill: colorVerde)[Jar], por lo que para ejecutarlo deberemos pasar el archivo a analizar como un argumento.
 #rect()[
-```fish
+```java
+java -jar coco.jar main.coco
+```
+]
+
+La implementación de *Coco* esta escrita en Java, utilizando la libreria JavaCC;
+Por lo que para ejecutarlo necesitaremos el JRE de Java.
+#rect()[
+```java
 java --version
 openjdk 25.0.1 2025-10-21
-OpenJDK Runtime Environment (build 25.0.1)
+*OpenJDK Runtime Environment (build 25.0.1)*
 OpenJDK 64-Bit Server VM (build 25.0.1, mixed mode, sharing)
 ```
 ]
-Para realizar modificaciones al código fuente, necesitaremos la versión 7.0.13 de JavaCC.
+Para realizar modificaciones al código fuente, necesitaremos la versión *7.0.13* de JavaCC.
 #rect()[
-  ```fish
+  ```java
   javacc --version
   Java Compiler Compiler Version 7.0.13 (Parser Generator)
   (type "javacc" with no arguments for help)
@@ -75,10 +83,9 @@ Para realizar modificaciones al código fuente, necesitaremos la versión 7.0.13
   ```
 ]
 
-
-
 #pagebreak()
 = Sintaxis del lenguaje
+
 == Ejemplos de sintaxis
 #pagebreak()
 = Tipos de datos
@@ -91,3 +98,4 @@ Para realizar modificaciones al código fuente, necesitaremos la versión 7.0.13
 == Operadores de comparación
 #pagebreak()
 = Símbolos
+
